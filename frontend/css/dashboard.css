@@ -1,0 +1,695 @@
+/* Dashboard Styles */
+.dashboard-container {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeIn 1s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.dashboard-header h1 {
+    font-size: 48px;
+    color: #dcc2af;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.dashboard-header .subtitle {
+    color: #a8a095;
+    font-size: 20px;
+}
+
+/* Meals Overview */
+.meals-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.meal-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: fadeIn 1s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+.meal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.current-meal-card {
+    border-color: rgba(134, 255, 60, 0.45);
+}
+
+.next-meal-card {
+    border-color: rgba(201, 160, 99, 0.53);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-header h2 {
+    font-size: 24px;
+    color: #ffffff;
+    margin: 0;
+    font-weight: 700;
+}
+
+.meal-time {
+    background: rgba(134, 255, 60, 0.2);
+    color: #86ff3c;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 2px solid rgba(134, 255, 60, 0.3);
+}
+
+.next-meal-card .meal-time {
+    background: rgba(201, 160, 99, 0.2);
+    color: #c9a063;
+    border-color: rgba(201, 160, 99, 0.3);
+}
+
+.meal-content {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.meal-display {
+    text-align: center;
+    width: 100%;
+}
+
+.meal-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.meal-items-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.meal-items-list li {
+    padding: 10px 0;
+    color: #ffffff;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.meal-items-list li:last-child {
+    border-bottom: none;
+}
+
+.meal-calories {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    color: #86ff3c;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.no-meal {
+    text-align: center;
+    color: #a8a095;
+    padding: 40px;
+    font-size: 16px;
+}
+
+/* Section Card */
+.section-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-header h2 {
+    font-size: 28px;
+    color: #dcc2af;
+    margin: 0;
+    font-weight: 800;
+}
+
+/* Weekly Meals Grid */
+.weekly-meals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.day-mini-card {
+    background: rgba(126, 126, 126, 0.17);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    animation: fadeIn 1s ease-out 0.8s forwards;
+    opacity: 0;
+}
+
+.day-mini-card:hover {
+    background: rgba(134, 255, 60, 0.1);
+    border-color: rgba(134, 255, 60, 0.45);
+    transform: scale(1.05);
+}
+
+.day-mini-card.active-day {
+    background: rgba(201, 160, 99, 0.2);
+    border-color: rgba(201, 160, 99, 0.53);
+}
+
+.day-mini-card .day-name {
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.day-mini-card .mini-meal-icons {
+    font-size: 32px;
+    margin: 15px 0;
+}
+
+.day-mini-card .mini-calories {
+    font-size: 14px;
+    color: #c2c2c2;
+    margin-top: 10px;
+}
+
+/* Subscription Info */
+.subscription-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    padding: 20px;
+    background: rgba(126, 126, 126, 0.17);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(201, 160, 99, 0.53);
+}
+
+.info-label {
+    font-size: 14px;
+    color: #a8a095;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.btn-action {
+    flex: 1;
+    min-width: 250px;
+    padding: 18px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease-out 1s forwards;
+    opacity: 0;
+}
+
+.btn-change {
+    background: rgba(0, 227, 248, 0.3);
+    border: 2px solid rgba(0, 227, 248, 0.51);
+    color: #ffffff;
+    box-shadow: 0 5px 20px rgba(0, 227, 248, 0.16);
+}
+
+.btn-change:hover {
+    background: rgba(0, 227, 248, 0.49);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 227, 248, 0.3);
+}
+
+.btn-pause {
+    background: rgba(255, 152, 0, 0.3);
+    border: 2px solid rgba(255, 152, 0, 0.5);
+    color: #ffffff;
+    box-shadow: 0 5px 20px rgba(255, 152, 0, 0.16);
+}
+
+.btn-pause:hover {
+    background: rgba(255, 152, 0, 0.49);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 152, 0, 0.3);
+}
+
+.btn-cancel {
+    background: rgba(255, 2, 2, 0.28);
+    border: 2px solid rgba(255, 2, 2, 0.53);
+    color: #ffffff;
+    box-shadow: 0 5px 20px rgba(255, 2, 2, 0.16);
+}
+
+.btn-cancel:hover {
+    background: rgba(143, 24, 24, 0.66);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 2, 2, 0.3);
+}
+
+/* Buttons */
+.btn-primary {
+    background: rgba(194, 155, 94, 0.45);
+    color: white;
+    padding: 12px 30px;
+    border: 2px solid rgba(154, 124, 74, 0.59);
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 20px rgba(201, 160, 99, 0.4);
+}
+
+.btn-primary:hover {
+    background: rgba(194, 155, 94, 0.68);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(201, 160, 99, 0.6);
+}
+
+.btn-secondary {
+    background: rgba(0, 227, 248, 0.3);
+    color: white;
+    padding: 12px 30px;
+    border: 2px solid rgba(0, 227, 248, 0.51);
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 20px rgba(0, 227, 248, 0.16);
+}
+
+.btn-secondary:hover {
+    background: rgba(0, 227, 248, 0.49);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 227, 248, 0.3);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: rgba(106, 106, 106, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 40px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.modal-content.large-modal {
+    max-width: 1200px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 36px;
+    cursor: pointer;
+    color: #999;
+    transition: all 0.3s ease;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.modal-footer {
+    padding-top: 25px;
+    margin-top: 30px;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.modal-description {
+    color: #a8a095;
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+/* Edit Meals Grid */
+.edit-meals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.edit-day-card {
+    background: rgba(126, 126, 126, 0.17);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-day-card:hover {
+    background: rgba(134, 255, 60, 0.1);
+    border-color: rgba(134, 255, 60, 0.45);
+    transform: scale(1.05);
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+
+.form-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+    background: rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #c9a063;
+}
+
+.form-selection {
+    width: 100%;
+    height: 55%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1a1a1a;
+    color: #969696;
+    font-size: 16px;
+    box-shadow: inset 0 0 0 1px #333;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Plan Options */
+.plan-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.plan-option {
+    background: rgba(126, 126, 126, 0.17);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.plan-option:hover {
+    background: rgba(134, 255, 60, 0.1);
+    border-color: rgba(134, 255, 60, 0.45);
+    transform: scale(1.05);
+}
+
+.plan-option.selected {
+    background: rgba(201, 160, 99, 0.2);
+    border-color: rgba(201, 160, 99, 0.53);
+}
+
+.plan-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.plan-option h3 {
+    color: #ffffff;
+    margin: 10px 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.plan-meals {
+    color: #a8a095;
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.plan-price {
+    color: #c9a063;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+/* Menu Items */
+.menu-section {
+    margin-bottom: 40px;
+}
+
+.menu-section h3 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.menu-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(134, 255, 60, 0.45);
+    transform: translateY(-5px);
+}
+
+.menu-item.selected {
+    background: rgba(129, 97, 52, 0.76);
+    border-color: rgba(201, 160, 99, 0.53);
+}
+
+.item-icon {
+    font-size: 56px;
+    margin-bottom: 12px;
+}
+
+.item-name {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.item-calories {
+    font-size: 13px;
+    color: #c1c1c1;
+}
+
+/* Loading State */
+.loading {
+    text-align: center;
+    color: #a8a095;
+    padding: 30px;
+    font-size: 16px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-header h1 {
+        font-size: 36px;
+    }
+
+    .meals-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .btn-action {
+        min-width: 100%;
+    }
+
+    .plan-options {
+        grid-template-columns: 1fr;
+    }
+
+    .weekly-meals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .subscription-info {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .modal-content {
+        padding: 25px;
+    }
+}

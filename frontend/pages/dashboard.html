@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Box'd Up</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/logged-in-styles.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="main-bg">
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="home.html" class="nav-link home-link">Home</a>
+                <a href="mealplanner.html" class="nav-link">Plans</a>
+                <a href="login.html" class="nav-link right-nav-link" id="login-link">Login</a>
+                <a href="signup.html" class="nav-link right-nav-link" id="signup-link">Sign Up</a>
+                <a href="about.html" class="nav-link right-nav-link">About</a>
+                <div class="profile-menu right-margin-nav-link" id="profile-menu">
+                    <span class="profile-icon">👤</span>
+                    <div class="dropdown-content">
+                        <a href="notifications.html">Notifications</a>
+                        <a href="dashboard.html" id="dashboard-link">Dashboard</a>
+                        <a href="settings.html">Settings</a>
+                        <a href="#" onclick="logout()">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="dashboard-container">
+    <div class="dashboard-header" id="dashboard-header">
+        <h1>Welcome back, User</h1>
+        <p class="subtitle">Manage your meal subscriptions and preferences</p>
+    </div>
+
+    <!-- Current & Next Meal Section -->
+    <div class="meals-overview">
+        <div class="meal-card current-meal-card">
+            <div class="card-header">
+                <h2>Today's Meal</h2>
+                <span class="meal-time" id="currentMealTime">Lunch</span>
+            </div>
+            <div class="meal-content" id="currentMealContent">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <div class="meal-card next-meal-card">
+            <div class="card-header">
+                <h2>Next Meal</h2>
+                <span class="meal-time" id="nextMealTime">Tomorrow</span>
+            </div>
+            <div class="meal-content" id="nextMealContent">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weekly Overview -->
+    <div class="section-card">
+        <div class="section-header">
+            <h2>📅 This Week's Meals</h2>
+            <button class="btn-primary" onclick="openEditMeals()">Edit</button>
+        </div>
+        <div class="weekly-meals-grid" id="weeklyMealsGrid">
+            <div class="loading">Loading weekly meals...</div>
+        </div>
+    </div>
+
+    <!-- Subscription Info -->
+    <div class="section-card">
+        <div class="section-header">
+            <h2>💳 Subscription Details</h2>
+            <button class="btn-secondary" onclick="openEditSubscription()">Edit</button>
+        </div>
+        <div class="subscription-info" id="subscriptionInfo">
+            <div class="loading">Loading subscription details...</div>
+        </div>
+    </div>
+
+    <!-- Subscription Actions -->
+    <div class="section-card">
+        <div class="section-header">
+            <h2>⚙️ Subscriptions</h2>
+        </div>
+        <div class="action-buttons">
+            <button class="btn-action btn-change" onclick="openChangeSubscription()">
+                Change Plan
+            </button>
+            <button class="btn-action btn-pause" onclick="pauseSubscription()">
+                Pause Subscription
+            </button>
+            <button class="btn-action btn-cancel" onclick="confirmCancelSubscription()">
+                Cancel Subscription
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Edit Meals -->
+<div class="modal" id="editMealsModal">
+    <div class="modal-content large-modal">
+        <div class="modal-header">
+            <h2>Edit Your Meals</h2>
+            <button class="close-btn" onclick="closeEditMeals()">×</button>
+        </div>
+        <div class="modal-body">
+            <p class="modal-description">Click on any day to customize your meal</p>
+            <div class="edit-meals-grid" id="editMealsGrid">
+                <!-- Days will be populated here -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary" onclick="closeEditMeals()">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Subscription -->
+<div class="modal" id="editSubscriptionModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Edit Subscription Info</h2>
+            <button class="close-btn" onclick="closeEditSubscription()">×</button>
+        </div>
+        <div class="form-container">
+            <form id="editSubscriptionForm">
+                <div class="form-group">
+                    <label class="form-label">First Name</label>
+                    <input type="text" id="editFirstName" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" id="editLastName" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="editEmail" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" id="editNumber" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Address</label>
+                    <input type="text" id="editAddress" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Delivery Time</label>
+                    <select id="editDeliveryTime" class="form-selection">
+                        <option value="1">6am-8am</option>
+                        <option value="2">12pm-2pm</option>
+                        <option value="3">7pm-9pm</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary" onclick="closeEditSubscription()">Cancel</button>
+            <button class="btn-primary" onclick="saveSubscriptionChanges()">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- Change Subscription -->
+<div class="modal" id="changeSubscriptionModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Change Subscription Plan</h2>
+            <button class="close-btn" onclick="closeChangeSubscription()">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="plan-options">
+                <div class="plan-option" onclick="selectPlan('1')">
+                    <div class="plan-icon">📦</div>
+                    <h3>Weekly Plan</h3>
+                    <p class="plan-meals">6 Meals</p>
+                    <p class="plan-price">Rs. 999/week</p>
+                </div>
+                <div class="plan-option" onclick="selectPlan('2')">
+                    <div class="plan-icon">📦📦</div>
+                    <h3>Monthly Plan</h3>
+                    <p class="plan-meals">24 Meals</p>
+                    <p class="plan-price">Rs. 9,999/month</p>
+                </div>
+                <div class="plan-option" onclick="selectPlan('3')">
+                    <div class="plan-icon">📦📦📦</div>
+                    <h3>Yearly Plan</h3>
+                    <p class="plan-meals">288 Meals</p>
+                    <p class="plan-price">Rs. 99,999/year</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary" onclick="closeChangeSubscription()">Cancel</button>
+            <button class="btn-primary" onclick="confirmPlanChange()">Confirm Change</button>
+        </div>
+    </div>
+</div>
+
+<!-- Meal Customizer -->
+<div class="modal" id="customizerModal">
+    <div class="modal-content large-modal">
+        <div class="modal-header">
+            <h2>Customize <span id="currentDay">Monday</span></h2>
+            <button class="close-btn" onclick="closeCustomizer()">×</button>
+        </div>
+
+        <div class="menu-section">
+            <h3>🍗 Main Protein</h3>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="selectItem(this, 'protein', 'Teriyaki Chicken', 280, '🍗')">
+                    <div class="item-icon">🍗</div>
+                    <div class="item-name">Teriyaki Chicken</div>
+                    <div class="item-calories">280 cal</div>
+                </div>
+                <div class="menu-item" onclick="selectItem(this, 'protein', 'Salmon Fillet', 320, '🟠')">
+                    <div class="item-icon">🟠</div>
+                    <div class="item-name">Salmon Fillet</div>
+                    <div class="item-calories">320 cal</div>
+                </div>
+                <div class="menu-item" onclick="selectItem(this, 'protein', 'Beef Bulgogi', 350, '🥩')">
+                    <div class="item-icon">🥩</div>
+                    <div class="item-name">Beef Bulgogi</div>
+                    <div class="item-calories">350 cal</div>
+                </div>
+                <div class="menu-item" onclick="selectItem(this, 'protein', 'Tofu Katsu', 240, '🧈')">
+                    <div class="item-icon">🧈</div>
+                    <div class="item-name">Tofu Katsu</div>
+                    <div class="item-calories">240 cal</div>
+                </div>
+                <div class="menu-item" onclick="selectItem(this, 'protein', 'Grilled Shrimp', 180, '🦐')">
+                    <div class="item-icon">🦐</div>
+                    <div class="item-name">Grilled Shrimp</div>
+                    <div class="item-calories">180 cal</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>🥗 Side Dish 1</h3>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="selectItem(this, 'side1', 'Edamame', 120, '🫘')">
+                    <div class="item-icon">🫘</div>
+                    <div class="item-name">Edamame</div>
+                    <div class="item-calories">120 cal</div>
+                </div>
+                <div class="menu-item" onclick="selectItem(this, 'side1', 'Spring Rolls', 180, '🥟')">
+                    <div class="item-icon">🥟</div>
+                    <div class="item-name">Spring Rolls</div>
+                    <div class="item-calories">180 cal</div>
+                </div>
+                <div class="menu-item" onclick="selectItem(this, 'side1', 'Seaweed Salad', 90, '🥬')">
+                    <div class="item-icon">🥬</div>
+                    <div class="item-name">Seaweed Salad</div>
+                    <div class="item-calories">90 cal</div>
+                </div>
+                <div class="menu-item" onclick="selectItem(this, 'side1', 'Gyoza', 200, '🥟')">
+                    <div class="item-icon">🥟</div>
+                    <div class="item-name">Gyoza</div>
+                    <div class="item-calories">200 cal</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>🍙 Side Dish 2</h3>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="selectItem(this, 'side2', 'Steamed Rice', 150, '🍚')">
+                    <div class="item-icon">🍚</div>
+                    <div class="item-name">Steamed Rice</div>
+                    <div class="item-calories">150 cal</div>
+                </div>
+                <div class="menu-item" onclick="selectItem(this, 'side2', 'Fried Rice', 220, '🍛')">
+                    <div class="item-icon">🍛</div>
+                    <div class="item-name">Fried Rice</div>
+                    <div class="item-calories">220 cal</div>
+                </div>
+                <div class="menu-item" onclick="selectItem(this, 'side2', 'Pickled Veggies', 40, '🥒')">
+                    <div class="item-icon">🥒</div>
+                    <div class="item-name">Pickled Veggies</div>
+                    <div class="item-calories">40 cal</div>
+                </div>
+                <div class="menu-item" onclick="selectItem(this, 'side2', 'Miso Soup', 60, '🍵')">
+                    <div class="item-icon">🍵</div>
+                    <div class="item-name">Miso Soup</div>
+                    <div class="item-calories">60 cal</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-secondary" onclick="closeCustomizer()">Cancel</button>
+            <button class="btn-primary" onclick="saveMealFromDashboard()">Save Meal</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Box'd Up</p>
+        <p>IIMS Sem 5</p>
+    </div>
+</footer>
+
+<div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
+<script src="../auth.js"></script>
+<script src="../notifications.js"></script>
+<script src="../dashboard.js"></script>
+</body>
+</html>

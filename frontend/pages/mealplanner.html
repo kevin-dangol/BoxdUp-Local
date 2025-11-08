@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meal Plan</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/meal-planner-styles.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+</head>
+<body class = "main-bg">
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-links">
+                    <a href="frontend/pages/home.html" class="nav-link home-link">Home</a>
+                    <a href="#plans-card" class="nav-link">Plans</a>
+                    <a href="login.html" class="nav-link right-nav-link" id="login-link">Login</a>
+                    <a href="signup.html" class="nav-link right-nav-link" id="signup-link">Sign Up</a>
+                    <a href="about.html" class="nav-link right-nav-link">About</a>
+                    <div class="profile-menu right-margin-nav-link" id="profile-menu">
+                        <span class="profile-icon">👤</span>
+                        <div class="dropdown-content">
+                            <a href="notifications.html">Notifications</a>
+                            <a href="dashboard.html" id="dashboard-link" >Dashboard</a>
+                            <a href="settings.html">Settings</a>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="meal-planner-section">
+        <section class="meal-planner-1" style="display: block;" id="meal-planner-1">
+            <section class="page-title">
+                <div class="title">
+                    <h1>Pick your meal</h1>
+                </div>
+                <div class="progress-bar">
+                    <div class="step-circle active">1</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step-circle">2</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step-circle">3</div>
+                </div>
+            </section>
+
+            <section class="meal-selection-top">
+                <div class="completion-indicator">
+                    <div class="completion-text">
+                        <span id="completedCount">0</span> of 6 days planned
+                    </div>
+                    <div class="completion-bar">
+                        <div class="completion-fill" id="progressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ready-made-meal">
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" onclick="applyPresetToAll('balanced')">🥗 Apply Balanced to All Days</button>
+                        <button class="preset-btn" onclick="applyPresetToAll('protein')">💪 Apply High Protein to All Days</button>
+                        <button class="preset-btn" onclick="applyPresetToAll('veggie')">🌱 Apply Vegetarian to All Days</button>
+                        <button class="preset-btn" onclick="randomizeWeek()">🎲 Surprise Me!</button>
+                    </div>
+                </div>
+
+                <section class="meal-planner">
+                    <div class="planner">
+                        <div class="day-card" id="sunday">
+                            <div class="day-header">
+                                <div class="day-name">Sunday</div>
+                                <div class="day-status">📅</div>
+                            </div>
+                            <div class="meal-preview">
+                                <div class="empty-state">Click customize to select your lunch</div>
+                            </div>
+                            <button class="customize-btn" onclick="openCustomizer('sunday')">Customize Sunday</button>
+                        </div>
+
+                        <div class="day-card" id="monday">
+                            <div class="day-header">
+                                <div class="day-name">Monday</div>
+                                <div class="day-status">📅</div>
+                            </div>
+                            <div class="meal-preview">
+                                <div class="empty-state">Click customize to select your lunch</div>
+                            </div>
+                            <button class="customize-btn" onclick="openCustomizer('monday')">Customize Monday</button>
+                        </div>
+
+                        <div class="day-card" id="tuesday">
+                            <div class="day-header">
+                                <div class="day-name">Tuesday</div>
+                                <div class="day-status">📅</div>
+                            </div>
+                            <div class="meal-preview">
+                                <div class="empty-state">Click customize to select your lunch</div>
+                            </div>
+                            <button class="customize-btn" onclick="openCustomizer('tuesday')">Customize Tuesday</button>
+                        </div>
+
+                        <div class="day-card" id="wednesday">
+                            <div class="day-header">
+                                <div class="day-name">Wednesday</div>
+                                <div class="day-status">📅</div>
+                            </div>
+                            <div class="meal-preview">
+                                <div class="empty-state">Click customize to select your lunch</div>
+                            </div>
+                            <button class="customize-btn" onclick="openCustomizer('wednesday')">Customize Wednesday</button>
+                        </div>
+
+                        <div class="day-card" id="thursday">
+                            <div class="day-header">
+                                <div class="day-name">Thursday</div>
+                                <div class="day-status">📅</div>
+                            </div>
+                            <div class="meal-preview">
+                                <div class="empty-state">Click customize to select your lunch</div>
+                            </div>
+                            <button class="customize-btn" onclick="openCustomizer('thursday')">Customize Thursday</button>
+                        </div>
+
+                        <div class="day-card" id="friday">
+                            <div class="day-header">
+                                <div class="day-name">Friday</div>
+                                <div class="day-status">📅</div>
+                            </div>
+                            <div class="meal-preview">
+                                <div class="empty-state">Click customize to select your lunch</div>
+                            </div>
+                            <button class="customize-btn" onclick="openCustomizer('friday')">Customize Friday</button>
+                        </div>
+                    </div>
+
+                    <div class="action-footer">
+                        <button type="button" class="footer-btn btn-primary next-button" onclick="proccedto2()">Next</button>
+                    </div>
+                </section>
+            </section>
+        </section>
+
+        <section class="meal-planner-2" style="display: none;" id="meal-planner-2">
+            <section class="page-title">
+                <div class="title">
+                    <h1>Pick Your Subscription</h1>
+                </div>
+                <div class="progress-bar">
+                    <div class="step-circle">1</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step-circle active">2</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step-circle">3</div>
+                </div>
+            </section>
+
+            <section class="form-container">
+                <form class="form" id="form">
+                    <div class="input-row-2">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input" placeholder="John" id="firstName">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input" placeholder="Doe" id="lastName">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="text" class="form-input" placeholder="Johndoe@gmail.com" id="email">
+                    </div>
+
+                    <div class="input-row-2">
+                        <div class="form-group">
+                            <label class="form-label">Number</label>
+                            <input type="text" class="form-input" placeholder="9876543210" id="number">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-input" placeholder="Nepal, Kathmandu" id="address">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Card Number</label>
+                        <input type="text" class="form-input" placeholder="1234 5678 9012 3456" id="cardNumber">
+                    </div>
+
+                    <div class="input-row-2">
+                        <div class="form-group">
+                            <label class="form-label">Expiry Date</label>
+                            <input type="text" class="form-input" placeholder="MM/YY" id="cardExpiry">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">CVV</label>
+                            <input type="text" class="form-input" placeholder="123" id="cardCvv">
+                        </div>
+                    </div>
+
+                    <div class="input-row-3">
+                        <div class="form-group">
+                            <label class="form-label">Cardholder Name</label>
+                            <input type="text" class="form-input" placeholder="John Doe" id="cardHolder">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subscription:</label>
+                            <select class="form-selection" id="subscriptionType">
+                                <option value="1">Weekly</option>
+                                <option value="2">Monthly</option>
+                                <option value="3">Yearly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Time:</label>
+                            <select class="form-selection" id="deliveryTime">
+                                <option value="1">6am-8am</option>
+                                <option value="2">12pm-2pm</option>
+                                <option value="3">7pm-9pm</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="action-footer">
+                        <button type="button" class="footer-btn btn-secondary back-button" onclick="proccedto1()">Back</button>
+                        <button type="button" class="footer-btn btn-primary next-button" onclick="proccedto3()">Next</button>
+                    </div>
+                </form>
+            </section>
+        </section>
+
+        <section class="meal-planner-3" style="display: none;" id="meal-planner-3">
+            <section class="page-title">
+                <div class="title">
+                    <h1>CheckOut</h1>
+                </div>
+                <div class="progress-bar">
+                    <div class="step-circle">1</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step-circle">2</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step-circle active">3</div>
+                </div>
+            </section>
+
+            <section class="checkout-grid">
+                <div class="section">
+                    <div class="section-header">
+                        <span style="font-size: 32px;">📋</span>
+                        <h2 class="section-title">Your Menu</h2>
+                    </div>
+
+                    <div class="weekly-summary">
+                        <div class="day-summary" id="sundaySummary">
+                            <div class="day-info">
+                                <div class="day-name">Sunday</div>
+                            </div>
+                            <button class="edit-btn" onclick="openCustomizer('sunday')">Edit</button>
+                        </div>
+
+                        <div class="day-summary" id="mondaySummary">
+                            <div class="day-info">
+                            </div>
+                            <button class="edit-btn" onclick="openCustomizer('monday')">Edit</button>
+                        </div>
+
+                        <div class="day-summary" id="tuesdaySummary">
+                            <div class="day-info">
+                            </div>
+                            <button class="edit-btn" onclick="openCustomizer('tuesday')">Edit</button>
+                        </div>
+
+                        <div class="day-summary" id="wednesdaySummary">
+                            <div class="day-info">
+                            </div>
+                            <button class="edit-btn" onclick="openCustomizer('wednesday')">Edit</button>
+                        </div>
+
+                        <div class="day-summary" id="thursdaySummary">
+                            <div class="day-info">
+                            </div>
+                            <button class="edit-btn" onclick="openCustomizer('thursday')">Edit</button>
+                        </div>
+
+                        <div class="day-summary" id="fridaySummary">
+                            <div class="day-info">
+                            </div>
+                            <button class="edit-btn" onclick="openCustomizer('friday')">Edit</button>
+                        </div>
+                    </div>
+
+                    <div class="delivery-info">
+                        <div class="info-row">
+                            <span class="info-icon">📅</span>
+                            <span><strong>Start Date:</strong> Next Monday, November 4, 2025</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-icon">🚚</span>
+                            <span><strong>Delivery:</strong> Daily between 6:00 AM - 8:00 AM</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-icon">📍</span>
+                            <span><strong>Location:</strong> Kathmandu, Bagmati Province</span>
+                        </div>
+                    </div>
+                    <button type="button" class="footer-btn btn-secondary back-button" onclick="backTo2()">Back</button>
+                </div>
+
+                <div>
+                    <div class="section order-summary">
+                        <div class="section-header">
+                            <span style="font-size: 32px;">💳</span>
+                            <h2 class="section-title">Order Summary</h2>
+                        </div>
+
+                        <div class="summary-row">
+                            <span class="summary-label">Weekly Subscription</span>
+                            <span class="summary-value">Rs. 999.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">5 Lunches</span>
+                            <span class="summary-value">Included</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Delivery Fee</span>
+                            <span class="summary-value" style="color: #4caf50;">FREE</span>
+                        </div>
+
+                        <div class="promo-section">
+                            <div class="promo-input-group">
+                                <input type="text" class="promo-input" placeholder="Enter promo code">
+                                <button class="apply-btn">Apply</button>
+                            </div>
+                        </div>
+
+                        <div class="total-row">
+                            <div class="summary-row">
+                                <span class="summary-label">Total Due Today</span>
+                                <span class="summary-value">Rs 999.00</span>
+                            </div>
+                        </div>
+                        <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+
+    <section class="meal-planner-customizer">
+        <div class="modal" id="customizerModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Customize <span id="currentDay">Monday</span></h2>
+                    <button class="close-btn" onclick="closeCustomizer()">×</button>
+                </div>
+
+                <div class="menu-section">
+                    <h3>🍗 Main Protein</h3>
+                    <div class="menu-grid">
+                        <div class="menu-item" onclick="selectItem(this, 'protein', 'Teriyaki Chicken', 280, '🍗')">
+                            <div class="item-icon">🍗</div>
+                            <div class="item-name">Teriyaki Chicken</div>
+                            <div class="item-calories">280 cal</div>
+                        </div>
+                        <div class="menu-item" onclick="selectItem(this, 'protein', 'Salmon Fillet', 320, '🐟')">
+                            <div class="item-icon">🐟</div>
+                            <div class="item-name">Salmon Fillet</div>
+                            <div class="item-calories">320 cal</div>
+                        </div>
+                        <div class="menu-item" onclick="selectItem(this, 'protein', 'Beef Bulgogi', 350, '🥩')">
+                            <div class="item-icon">🥩</div>
+                            <div class="item-name">Beef Bulgogi</div>
+                            <div class="item-calories">350 cal</div>
+                        </div>
+                        <div class="menu-item" onclick="selectItem(this, 'protein', 'Tofu Katsu', 240, '🧈')">
+                            <div class="item-icon">🧈</div>
+                            <div class="item-name">Tofu Katsu</div>
+                            <div class="item-calories">240 cal</div>
+                        </div>
+                        <div class="menu-item" onclick="selectItem(this, 'protein', 'Grilled Shrimp', 180, '🦐')">
+                            <div class="item-icon">🦐</div>
+                            <div class="item-name">Grilled Shrimp</div>
+                            <div class="item-calories">180 cal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <h3>🥗 Side Dish 1</h3>
+                    <div class="menu-grid">
+                        <div class="menu-item" onclick="selectItem(this, 'side1', 'Edamame', 120, '🫘')">
+                            <div class="item-icon">🫘</div>
+                            <div class="item-name">Edamame</div>
+                            <div class="item-calories">120 cal</div>
+                        </div>
+                        <div class="menu-item" onclick="selectItem(this, 'side1', 'Spring Rolls', 180, '🥟')">
+                            <div class="item-icon">🥟</div>
+                            <div class="item-name">Spring Rolls</div>
+                            <div class="item-calories">180 cal</div>
+                        </div>
+                        <div class="menu-item" onclick="selectItem(this, 'side1', 'Seaweed Salad', 90, '🥬')">
+                            <div class="item-icon">🥬</div>
+                            <div class="item-name">Seaweed Salad</div>
+                            <div class="item-calories">90 cal</div>
+                        </div>
+                        <div class="menu-item" onclick="selectItem(this, 'side1', 'Gyoza', 200, '🥟')">
+                            <div class="item-icon">🥟</div>
+                            <div class="item-name">Gyoza</div>
+                            <div class="item-calories">200 cal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <h3>🍙 Side Dish 2</h3>
+                    <div class="menu-grid">
+                        <div class="menu-item" onclick="selectItem(this, 'side2', 'Steamed Rice', 150, '🍚')">
+                            <div class="item-icon">🍚</div>
+                            <div class="item-name">Steamed Rice</div>
+                            <div class="item-calories">150 cal</div>
+                        </div>
+                        <div class="menu-item" onclick="selectItem(this, 'side2', 'Fried Rice', 220, '🍛')">
+                            <div class="item-icon">🍛</div>
+                            <div class="item-name">Fried Rice</div>
+                            <div class="item-calories">220 cal</div>
+                        </div>
+                        <div class="menu-item" onclick="selectItem(this, 'side2', 'Pickled Veggies', 40, '🥒')">
+                            <div class="item-icon">🥒</div>
+                            <div class="item-name">Pickled Veggies</div>
+                            <div class="item-calories">40 cal</div>
+                        </div>
+                        <div class="menu-item" onclick="selectItem(this, 'side2', 'Miso Soup', 60, '🍵')">
+                            <div class="item-icon">🍵</div>
+                            <div class="item-name">Miso Soup</div>
+                            <div class="item-calories">60 cal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="footer-btn btn-secondary" onclick="closeCustomizer()">Cancel</button>
+                    <button class="footer-btn btn-primary" onclick="saveMeal()">Save Meal</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Box'd Up</p>
+            <p>IIMS Sem 5</p>
+        </div>
+    </footer>
+    <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
+    <script src="../auth.js"></script>
+    <script src="../notifications.js"></script>
+    <script src="../mealPlanner.js"></script>
+</body>
+</html>

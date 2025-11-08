@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Box'd Up</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/logged-in-styles.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+</head>
+<body class="main-bg">
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-links">
+                    <a href="#" class="nav-link home-link">Home</a>
+                    <a href="#plans-card" class="nav-link">Plans</a>
+                    <a href="login.html" class="nav-link right-nav-link" id="login-link">Login</a>
+                    <a href="signup.html" class="nav-link right-nav-link" id="signup-link">Sign Up</a>
+                    <a href="about.html" class="nav-link right-nav-link">About</a>
+                    <div class="profile-menu right-margin-nav-link" id="profile-menu">
+                        <span class="profile-icon">👤</span>
+                        <div class="dropdown-content">
+                            <a href="notifications.html">Notifications</a>
+                            <a href="dashboard.html" id="dashboard-link" >Dashboard</a>
+                            <a href="settings.html">Settings</a>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="landing">
+        <div class="landing-content">
+            <div class="landing-logo">
+                <img src="../imgs/logo.png" alt="logo" class="logo">
+                <div class="logo-text">
+                    <h1 class="boxed">Box'd</h1>
+                    <h1 class="up">Up</h1>
+                </div>
+                <p class="slogan">Designed for You, Delivered to You</p>
+            </div>
+            <p class="description">
+                Customized lunch boxes crafted fresh daily.
+                Choose your plan, build your perfect meal for each day of the week,
+                and enjoy restaurant-quality lunches delivered to your door.
+            </p>
+            <a href="#plans-card" class="start-button" id="start-button">Get Started</a>
+        </div>
+    </section>
+
+    <section class="why-cards">
+        <div class="why-container">
+            <div class="cards-title">
+                <h1>Why Choose Us?</h1>
+            </div>
+            <div class="why-card-grid">
+                <div class="why-card">
+                    <div class="why-card-content">
+                        <div class="why-icon">👑</div>
+                        <h2>Premium Quality</h2>
+                        <div class="Description">
+                            <p><span>
+                                Fresh ingredients sourced daily from local suppliers.
+                                Every box is crafted with care and attention to detail worthy of royalty.
+                            </span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-content">
+                        <div class="why-icon">🎨</div>
+                        <h2>Fully Customizable</h2>
+                        <div class="Description">
+                            <p><span>
+                                Build different lunches for each day of the week or choose from our chef's selections. Your preferences, your way.
+                            </span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-content">
+                        <div class="why-icon">🚚</div>
+                        <h2>Daily Delivery</h2>
+                        <div class="Description">
+                            <p><span>
+                                Wake up to fresh lunch delivered to your door every morning. No meal prep, no hassle. Just great food.
+                            </span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="plans-cards" id="plans-card">
+        <div class="container">
+            <div class="cards-title">
+                <h1>Our Plans</h1>
+            </div>
+            <div class="card-grid">
+                <div class="plans-card weekly-card">
+                    <div class="card-content">
+                        <h2>Weekly</h2>
+                        <div class="price">
+                            <h3>Rs. 999</h3>
+                        </div>
+                        <div class="Description">
+                            <p><span>6 unique lunches per week</span></p>
+                            <p><span>Customize each day differently</span></p>
+                            <p><span>Full menu access</span></p>
+                            <p><span>Cancel anytime</span></p>
+                        </div>
+                        <div class="select-button">
+                        <a href="mealplanner.html" class="cards-button" id="weekly-button">Select Weekly</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="plans-card monthly-card">
+                    <div class="card-content">
+                        <h2>Monthly</h2>
+                        <div class="price">
+                            <h3>Rs. 9999</h3>
+                        </div>
+                        <div class="Description">
+                            <p><span>24 unique lunches per month</span></p>
+                            <p><span>Customize each day differently</span></p>
+                            <p><span>Full menu access</span></p>
+                            <p><span>Priority support</span></p>
+                            <p><span>15% savings</span></p>
+                        </div>
+                        <div class="select-button">
+                        <a href="mealplanner.html" class="cards-button" id="monthly-button">Select Monthly</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="plans-card yearly-card">
+                    <div class="card-content">
+                        <h2>Yearly</h2>
+                        <div class="price">
+                            <h3>Rs. 99999</h3>
+                        </div>
+                        <div class="Description">
+                            <p><span>240 unique lunches per month</span></p>
+                            <p><span>Customize each day differently</span></p>
+                            <p><span>Full menu access</span></p>
+                            <p><span>VIP support</span></p>
+                            <p><span>25% savings</span></p>
+                            <p><span>Exclusive menu items</span></p>
+                        </div>
+                        <div class="select-button">
+                            <a href="mealplanner.html" class="cards-button" id="yearly-button">Select Yearly</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Box'd Up</p>
+            <p>IIMS Sem 5</p>
+        </div>
+    </footer>
+    <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
+    <script src="../auth.js"></script>
+</body>
+</html>
