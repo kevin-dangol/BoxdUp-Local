@@ -1,8 +1,15 @@
 /* Dashboard Styles */
 .dashboard-container {
-    max-width: 1400px;
-    margin: 40px auto;
+    max-width: 90vw;
+    margin: 5vh 8vw;
     padding: 0 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out 0.2s forwards;
+    opacity: 0;
 }
 
 .dashboard-header {
@@ -33,7 +40,7 @@
 }
 
 .meal-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.43);
     backdrop-filter: blur(10px);
     border: 3px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
@@ -144,7 +151,7 @@
 
 /* Section Card */
 .section-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.34);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
@@ -641,7 +648,6 @@
     font-size: 16px;
 }
 
-/* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -653,7 +659,6 @@
     }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .dashboard-header h1 {
         font-size: 36px;

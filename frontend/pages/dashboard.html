@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Dashboard - Box'd Up</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/logged-in-styles.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body class="main-bg">
@@ -21,7 +20,8 @@
                     <span class="profile-icon">👤</span>
                     <div class="dropdown-content">
                         <a href="notifications.html">Notifications</a>
-                        <a href="dashboard.html" id="dashboard-link">Dashboard</a>
+                        <a href="mealRequests.html" class="adminLink">Meal Requests</a>
+                        <a href="dashboard.html">Dashboard</a>
                         <a href="settings.html">Settings</a>
                         <a href="#" onclick="logout()">Logout</a>
                     </div>
@@ -37,7 +37,6 @@
         <p class="subtitle">Manage your meal subscriptions and preferences</p>
     </div>
 
-    <!-- Current & Next Meal Section -->
     <div class="meals-overview">
         <div class="meal-card current-meal-card">
             <div class="card-header">
@@ -60,7 +59,6 @@
         </div>
     </div>
 
-    <!-- Weekly Overview -->
     <div class="section-card">
         <div class="section-header">
             <h2>📅 This Week's Meals</h2>
@@ -71,7 +69,6 @@
         </div>
     </div>
 
-    <!-- Subscription Info -->
     <div class="section-card">
         <div class="section-header">
             <h2>💳 Subscription Details</h2>
@@ -82,7 +79,6 @@
         </div>
     </div>
 
-    <!-- Subscription Actions -->
     <div class="section-card">
         <div class="section-header">
             <h2>⚙️ Subscriptions</h2>
@@ -101,7 +97,6 @@
     </div>
 </section>
 
-<!-- Edit Meals -->
 <div class="modal" id="editMealsModal">
     <div class="modal-content large-modal">
         <div class="modal-header">
@@ -120,7 +115,6 @@
     </div>
 </div>
 
-<!-- Edit Subscription -->
 <div class="modal" id="editSubscriptionModal">
     <div class="modal-content">
         <div class="modal-header">
@@ -166,7 +160,6 @@
     </div>
 </div>
 
-<!-- Change Subscription -->
 <div class="modal" id="changeSubscriptionModal">
     <div class="modal-content">
         <div class="modal-header">
@@ -202,7 +195,6 @@
     </div>
 </div>
 
-<!-- Meal Customizer -->
 <div class="modal" id="customizerModal">
     <div class="modal-content large-modal">
         <div class="modal-header">

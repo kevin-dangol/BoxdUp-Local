@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meal Planner - Box'd Up</title>
+    <link rel="stylesheet" href="../css/meal-planner-styles.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="main-bg">
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="home.html" class="nav-link home-link">Home</a>
+                <a href="mealplanner.html" class="nav-link">Plans</a>
+                <a href="login.html" class="nav-link right-nav-link" id="login-link">Login</a>
+                <a href="signup.html" class="nav-link right-nav-link" id="signup-link">Sign Up</a>
+                <a href="about.html" class="nav-link right-nav-link">About</a>
+                <div class="profile-menu right-margin-nav-link" id="profile-menu">
+                    <span class="profile-icon">👤</span>
+                    <div class="dropdown-content">
+                        <a href="notifications.html">Notifications</a>
+                        <a href="mealRequests.html" class="adminLink">Meal Requests</a>
+                        <a href="dashboard.html">Dashboard</a>
+                        <a href="settings.html">Settings</a>
+                        <a href="#" onclick="logout()">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="meal-planner-section">
+    <section class="page-title">
+        <div class="title">
+            <h1>Your Meal Preferences</h1>
+        </div>
+        <div class="progress-bar">
+            <div class="step-circle active">1</div>
+            <span class="step-arrow">→</span>
+            <div class="step-circle">2</div>
+            <span class="step-arrow">→</span>
+            <div class="step-circle">3</div>
+            <span class="step-arrow">→</span>
+            <div class="step-circle">4</div>
+        </div>
+    </section>
+
+    <section class="meal-planner-step" id="step-1" style="display: none;">
+        <div class="step-container step-background">
+            <h2 class="step-title">🍽️ Preferences</h2>
+            <p class="step-description">Tell us about your dietary preferences and we'll customize your meal options</p>
+
+            <div class="preference-card">
+                <h3>Diet Type:</h3>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="dietType" value="any" checked>
+                        <span>🍽️ Any, I eat everything</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="dietType" value="veg">
+                        <span>🥗 Vegetarian</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="dietType" value="vegan">
+                        <span>🌱 Vegan</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="dietType" value="non-veg">
+                        <span>🍖 Non-Vegetarian</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="preference-card">
+                <h3>Protein Level:</h3>
+                <select id="proteinLevel" class="form-selection">
+                    <option value="normal">Normal</option>
+                    <option value="high">High Protein</option>
+                    <option value="low">Low Protein</option>
+                </select>
+            </div>
+
+            <div class="preference-card">
+                <h3>Spice Level:</h3>
+                <select id="spiceLevel" class="form-selection">
+                    <option value="mild">Mild</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="spicy">Spicy</option>
+                </select>
+            </div>
+
+            <div class="preference-card">
+                <h3>Allergies (Select all that apply):</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="allergies" value="nuts">
+                        <span>🥜 Nuts</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="allergies" value="dairy">
+                        <span>🥛 Dairy</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="allergies" value="gluten">
+                        <span>🌾 Gluten</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="allergies" value="seafood">
+                        <span>🦐 Seafood</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="allergies" value="soy">
+                        <span>🫘 Soy</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="allergies" value="eggs">
+                        <span>🥚 Eggs</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="action-footer">
+                <button type="button" class="footer-btn btn-primary next-button" onclick="savePreferences()">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="meal-planner-step" id="step-2" style="display: none;">
+        <div class="step-container step-background">
+            <h2 class="step-title">📋 Your Information</h2>
+            <p class="step-description">Enter your details and payment information</p>
+
+            <div class="form-container">
+                <form class="form">
+                    <div class="input-row-2">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input" placeholder="John" id="firstName">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input" placeholder="Doe" id="lastName">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="john@example.com" id="email">
+                    </div>
+
+                    <div class="input-row-2">
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" class="form-input" placeholder="9876543210" id="number">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-input" placeholder="Kathmandu, Nepal" id="address">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Card Number</label>
+                        <input type="text" class="form-input" placeholder="1234 5678 9012 3456" id="cardNumber">
+                    </div>
+
+                    <div class="input-row-2">
+                        <div class="form-group">
+                            <label class="form-label">Expiry Date</label>
+                            <input type="text" class="form-input" placeholder="MM/YY" id="cardExpiry">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">CVV</label>
+                            <input type="text" class="form-input" placeholder="123" id="cardCvv">
+                        </div>
+                    </div>
+
+                    <div class="input-row-3">
+                        <div class="form-group">
+                            <label class="form-label">Cardholder Name</label>
+                            <input type="text" class="form-input" placeholder="John Doe" id="cardHolder">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subscription</label>
+                            <select class="form-selection" id="subscriptionType">
+                                <option value="1">Weekly - Rs. 999</option>
+                                <option value="2">Monthly - Rs. 9,999</option>
+                                <option value="3">Yearly - Rs. 99,999</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Delivery Time</label>
+                            <select class="form-selection" id="deliveryTime">
+                                <option value="1">6am-8am</option>
+                                <option value="2">12pm-2pm</option>
+                                <option value="3">7pm-9pm</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="action-footer">
+                        <button type="button" class="footer-btn btn-secondary back-button" onclick="goBack(2)">Back</button>
+                        <button type="button" class="footer-btn btn-primary next-button" onclick="saveUserInfo()">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="meal-planner-step" id="step-3" style="display: none;">
+        <div class="step-container step-background">
+            <div class="modal-header">
+                <h2 class="step-title">🍱 Select Your Meals</h2>
+                <p class="step-description">Choose 5 dishes from each category. Our chefs will arrange them throughout the week!</p>
+            </div>
+
+            <div class="food-selection-container">
+                <div class="food-category" id="mainDishes">
+                    <h3>Main Dishes - Select 5</h3>
+                    <div class="food-grid" id="mainDishesGrid"></div>
+                </div>
+
+                <div class="food-category" id="side1Dishes">
+                    <h3>Side Dishes (Set 1) - Select 5</h3>
+                    <div class="food-grid" id="side1DishesGrid"></div>
+                </div>
+
+                <div class="food-category" id="side2Dishes">
+                    <h3>Side Dishes (Set 2) - Select 5</h3>
+                    <div class="food-grid" id="side2DishesGrid"></div>
+                </div>
+            </div>
+
+            <div class="action-footer">
+                <button type="button" class="footer-btn btn-secondary back-button" onclick="goBack(3)">Back</button>
+                <button type="button" class="footer-btn btn-primary next-button" onclick="submitFoodSelection()">Submit</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="meal-planner-step" id="step-4" style="display: none;">
+        <div class="step-container step-background">
+            <div id="statusContainer"></div>
+        </div>
+    </section>
+
+    <section class="meal-planner-step" id="step-5" style="display: none;">
+        <div class="checkout-grid">
+            <div class="section">
+                <div class="section-header">
+                    <span style="font-size: 32px;">📋</span>
+                    <h2 class="section-title">Your Menu</h2>
+                </div>
+
+                <div id="approvedMealsContainer" class="approved-meals-display"></div>
+            </div>
+
+            <div>
+                <div class="section order-summary">
+                    <div class="section-header">
+                        <span style="font-size: 32px;">💳</span>
+                        <h2 class="section-title">Delivery & Order Summary</h2>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="summary-label">Weekly Subscription</span>
+                        <span class="summary-value">Rs. 999.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">6 Lunches</span>
+                        <span class="summary-value">Included</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Delivery Fee</span>
+                        <span class="summary-value" style="color: #4caf50;">FREE</span>
+                    </div>
+
+                    <div class="total-row">
+                        <div class="summary-row">
+                            <span class="summary-label">Total Due Today</span>
+                            <span class="summary-value">Rs 999.00</span>
+                        </div>
+                    </div>
+                    <div class="delivery-info">
+                    </div>
+                    <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Box'd Up</p>
+        <p>IIMS Sem 5</p>
+    </div>
+</footer>
+
+<div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
+<script src="../auth.js"></script>
+<script src="../notifications.js"></script>
+<script src="../mealPlanner.js"></script>
+</body>
+</html>

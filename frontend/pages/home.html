@@ -4,34 +4,34 @@
     <meta charset="UTF-8">
     <title>Box'd Up</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/logged-in-styles.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 </head>
 <body class="main-bg">
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <div class="nav-links">
-                    <a href="#" class="nav-link home-link">Home</a>
-                    <a href="#plans-card" class="nav-link">Plans</a>
-                    <a href="login.html" class="nav-link right-nav-link" id="login-link">Login</a>
-                    <a href="signup.html" class="nav-link right-nav-link" id="signup-link">Sign Up</a>
-                    <a href="about.html" class="nav-link right-nav-link">About</a>
-                    <div class="profile-menu right-margin-nav-link" id="profile-menu">
-                        <span class="profile-icon">👤</span>
-                        <div class="dropdown-content">
-                            <a href="notifications.html">Notifications</a>
-                            <a href="dashboard.html" id="dashboard-link" >Dashboard</a>
-                            <a href="settings.html">Settings</a>
-                            <a href="#" onclick="logout()">Logout</a>
-                        </div>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="home.html" class="nav-link home-link">Home</a>
+                <a href="mealplanner.html" class="nav-link">Plans</a>
+                <a href="login.html" class="nav-link right-nav-link" id="login-link">Login</a>
+                <a href="signup.html" class="nav-link right-nav-link" id="signup-link">Sign Up</a>
+                <a href="about.html" class="nav-link right-nav-link">About</a>
+                <div class="profile-menu right-margin-nav-link" id="profile-menu">
+                    <span class="profile-icon">👤</span>
+                    <div class="dropdown-content">
+                        <a href="notifications.html">Notifications</a>
+                        <a href="mealRequests.html" class="adminLink">Meal Requests</a>
+                        <a href="dashboard.html">Dashboard</a>
+                        <a href="settings.html">Settings</a>
+                        <a href="#" onclick="logout()">Logout</a>
                     </div>
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
     <section class="landing">
         <div class="landing-content">
@@ -168,5 +168,6 @@
     </footer>
     <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
     <script src="../auth.js"></script>
+    <script src="../notifications.js"></script>
 </body>
 </html>
